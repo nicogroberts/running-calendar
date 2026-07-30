@@ -46,6 +46,26 @@ main {
   margin-top: 1rem;
 }
 
+#yearly-runs {
+  margin-top: 1rem;
+  font-size: small;
+}
+
+#yearly-time {
+  font-size: small;
+}
+
+#best-pace {
+  font-size: small;
+}
+
+#calendar {
+  margin: 1rem;
+  border: solid 1px var(--tertiary-color);
+  border-radius: 5px;
+  padding: 1rem;
+}
+
 footer {
   text-align: center;
   margin: 0.5rem;
