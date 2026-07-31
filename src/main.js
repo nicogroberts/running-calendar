@@ -13,6 +13,6 @@ bestPace.textContent = `${bestPaceTime} is the best pace in the last year`;
 
 const currentDate = new Date();
 
-const runningCalendar = new Calendar(currentDate);
+const runningCalendar = new Calendar(currentDate, mainSection);
 
 runningCalendar.displayCurrentDate();
