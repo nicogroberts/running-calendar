@@ -2,12 +2,13 @@
  * A class defining a calendar object
  */
 class Calendar {
-    constructor(startDate, currentDate) {
-        this.startDate = startDate;
+    constructor(currentDate) {
         this.currentDate = currentDate;
     }
 
-    displayCurrentDate(){};
+    displayCurrentDate() {
+        console.log(this.currentDate);
+    };
 
     getMonthOffset(){};
 
@@ -21,3 +22,5 @@ class Calendar {
 
     getColor(){};
 }
+
+export { Calendar };
