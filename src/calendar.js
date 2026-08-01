@@ -52,15 +52,21 @@ class Calendar {
         const months = document.createElement("div");
         months.classList.add("months");
         this.getContainer().appendChild(months);
-    }
+    };
+
+    generateLegend() {
+        const legend = document.createElement("div");
+        legend.classList.add("legend");
+        this.getParentElement().appendChild(legend);
+    };
 
     getMonthOffset(){};
 
     generateCalendar() {
         this.generateDays();
+        this.generateMonths();
+        this.generateLegend();
     };
-
-    generateLegend(){};
 
     populateCalendar(){};
 
