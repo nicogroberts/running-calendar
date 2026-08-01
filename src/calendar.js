@@ -2,9 +2,12 @@
  * A class defining a calendar object
  */
 class Calendar {
-    constructor(currentDate, mainElement) {
+    constructor(currentDate, parentElement) {
         this.currentDate = currentDate;
-        this.mainElement = this.mainElement;
+        this.parentElement = this.parentElement;
+        const calendarContainer = document.createElement("div");
+        calendarContainer.classList.add("calendar-container");
+        this.parentElement.appendChild(calendarContainer);
     }
 
     displayCurrentDate() {
@@ -23,8 +26,12 @@ class Calendar {
         return this.currentDate.getDate();
     }
 
-    getMainElement() {
-        return this.mainElement;
+    getParentElement() {
+        return this.parentElement;
+    }
+
+    getContainer() {
+        return calendarContainer;
     }
 
     getMonthOffset(){};
