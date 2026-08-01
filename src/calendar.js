@@ -15,13 +15,23 @@ class Calendar {
         return this.currentDate;
     };
 
+    getCurrentMonth() {
+        return this.currentDate.getMonth();
+    };
+
+    getCurrentDay() {
+        return this.currentDate.getDate();
+    }
+
     getMainElement() {
         return this.mainElement;
     }
 
     getMonthOffset(){};
 
-    generateCalendar(){};
+    generateCalendar() {
+        
+    };
 
     generateDayLabels(){};
 
