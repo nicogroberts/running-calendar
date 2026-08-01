@@ -4,10 +4,10 @@
 class Calendar {
     constructor(currentDate, parentElement) {
         this.currentDate = currentDate;
-        this.parentElement = this.parentElement;
-        const calendarContainer = document.createElement("div");
-        calendarContainer.classList.add("calendar-container");
-        this.parentElement.appendChild(calendarContainer);
+        this.parentElement = parentElement;
+        this.calendarContainer = document.createElement("div");
+        this.calendarContainer.classList.add("calendar-container");
+        this.parentElement.appendChild(this.getContainer());
     }
 
     displayCurrentDate() {
@@ -31,16 +31,28 @@ class Calendar {
     }
 
     getContainer() {
-        return calendarContainer;
+        return this.calendarContainer;
+    }
+
+    generateDays() {
+        const daysOfTheWeek = ["Mon", "Wed", "Fri"];
+
+        const days = document.createElement("div");
+        days.classList.add("days");
+        daysOfTheWeek.forEach(d => {
+            let day = document.createElement("span");
+            day.id = d;
+            day.textContent = d;
+            days.appendChild(day);
+        });
+        this.getContainer().appendChild(days);
     }
 
     getMonthOffset(){};
 
     generateCalendar() {
-        
+        this.generateDays();
     };
-
-    generateDayLabels(){};
 
     generateLegend(){};
 

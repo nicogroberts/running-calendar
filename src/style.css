@@ -66,6 +66,27 @@ main {
   padding: 1rem;
 }
 
+.calendar-container {
+  display: flex;
+}
+
+.days {
+  display: flex;
+  flex-direction: column;
+}
+
+#Mon {
+  margin-top: calc(1rem + 4px);
+}
+
+#Wed {
+  margin-top: 10px;
+}
+
+#Fri {
+  margin-top: 8px;
+}
+
 footer {
   text-align: center;
   margin: 0.5rem;

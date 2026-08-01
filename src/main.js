@@ -16,3 +16,5 @@ const currentDate = new Date();
 const runningCalendar = new Calendar(currentDate, calendar);
 
 runningCalendar.displayCurrentDate();
+
+runningCalendar.generateCalendar();
