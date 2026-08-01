@@ -87,6 +87,24 @@ main {
   margin-top: 8px;
 }
 
+.cell-container {
+  display: flex;
+}
+
+.cell {
+  background-color: var(--secondary-color);
+  padding: 6px;
+  margin: 4px;
+}
+
+.empty {
+  background-color: var(--primary-color);
+}
+
+.legend {
+  display: flex;
+}
+
 footer {
   text-align: center;
   margin: 0.5rem;

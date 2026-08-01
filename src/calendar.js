@@ -1,3 +1,39 @@
+import { Cell } from "./cell";
+
+/**
+ * Object containing all the days corresponding to each month
+ */
+const daysOfTheMonth = {
+    Jan: 31,
+    Feb: 28,
+    Mar: 31,
+    Apr: 30,
+    May: 31,
+    Jun: 30,
+    Jul: 31,
+    Aug: 31,
+    Sep: 30,
+    Oct: 31,
+    Nov: 30,
+    Dec: 31
+};
+
+/**
+ * An array containing the days of the week
+ */
+const daysOfTheWeek = ["Mon", "Wed", "Fri"];
+
+/**
+ * Object containing all the different colors corresponding to amount of activity levels
+ */
+const activityStates = {
+    None: "#262626",
+    Least: "#033a16",
+    Less: "#196c2e",
+    More: "#2ea043",
+    Most: "#55d163"
+};
+
 /**
  * A class defining a calendar object
  */
@@ -35,8 +71,6 @@ class Calendar {
     };
 
     generateDays() {
-        const daysOfTheWeek = ["Mon", "Wed", "Fri"];
-
         const days = document.createElement("div");
         days.classList.add("days");
         daysOfTheWeek.forEach(d => {
@@ -58,6 +92,19 @@ class Calendar {
         const legend = document.createElement("div");
         legend.classList.add("legend");
         this.getParentElement().appendChild(legend);
+        const lessLabel = document.createElement("span");
+        lessLabel.classList.add("less-label");
+        lessLabel.textContent = "Less";
+        legend.appendChild(lessLabel);
+        Object.values(activityStates).forEach(c => {
+            // Create cell
+            const cell = new Cell(c);
+            legend.appendChild(cell.getElement());
+        });
+        const moreLabel = document.createElement("span");
+        moreLabel.classList.add("more-label");
+        moreLabel.textContent = "More";
+        legend.appendChild(moreLabel);
     };
 
     getMonthOffset(){};
