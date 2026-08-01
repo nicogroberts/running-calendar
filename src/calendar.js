@@ -24,15 +24,15 @@ class Calendar {
 
     getCurrentDay() {
         return this.currentDate.getDate();
-    }
+    };
 
     getParentElement() {
         return this.parentElement;
-    }
+    };
 
     getContainer() {
         return this.calendarContainer;
-    }
+    };
 
     generateDays() {
         const daysOfTheWeek = ["Mon", "Wed", "Fri"];
@@ -46,6 +46,12 @@ class Calendar {
             days.appendChild(day);
         });
         this.getContainer().appendChild(days);
+    };
+
+    generateMonths() {
+        const months = document.createElement("div");
+        months.classList.add("months");
+        this.getContainer().appendChild(months);
     }
 
     getMonthOffset(){};
