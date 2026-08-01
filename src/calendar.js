@@ -107,7 +107,9 @@ class Calendar {
         legend.appendChild(moreLabel);
     };
 
-    getMonthOffset(){};
+    getMonthOffset(year, month) {
+        return (new Date(year, month, 1).getDay() + 6) % 7;
+    };
 
     generateCalendar() {
         this.generateDays();
