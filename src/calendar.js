@@ -116,6 +116,7 @@ class Calendar {
         let col = document.createElement("div");
         col.classList.add("col");
         cellContainer.appendChild(col);
+        return col;
     };
 
     addMonth(months, index) {
@@ -129,15 +130,25 @@ class Calendar {
         return cellContainer;
     }
 
+    addCell(col) {
+        const cell = new Cell("#262626");
+        col.appendChild(cell.getElement());
+    }
+
     generateCalendar() {
         this.generateDays();
         const months = this.generateMonths();
         this.generateLegend();
 
         for (let i = 0; i <= this.getCurrentMonth(); i++) {
-
             const cellContainer = this.addMonth(months, i);
-            this.addColumn(cellContainer);
+            const col = this.addColumn(cellContainer);
+
+            let dayCounter = this.getMonthOffset(year, i);
+
+            for (let j = 0; j < dayCounter; j++) {
+                this.addCell(col);
+            }
         }
     };
 
