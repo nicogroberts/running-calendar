@@ -47,7 +47,7 @@ class Calendar {
     }
 
     displayCurrentDate() {
-        console.log(`Current Date: ${this.currentDate}, Month: ${this.getCurrentMonth}, Day: ${this.getCurrentDay}`);
+        console.log(`Current Date: ${this.currentDate}, Month: ${this.getCurrentMonth()}, Day: ${this.getCurrentDay()}`);
     };
 
     getCurrentDate() {
@@ -130,13 +130,8 @@ class Calendar {
         return cellContainer;
     }
 
-    addCell(col) {
-        const cell = new Cell("#262626");
-        col.appendChild(cell.getElement());
-    }
-
-    addEmptyCell(col) {
-        const cell = new Cell("#1e1e1e");
+    addCell(col, color) {
+        const cell = new Cell(color);
         col.appendChild(cell.getElement());
     }
 
@@ -154,14 +149,16 @@ class Calendar {
             let dayCounter = this.getMonthOffset(year, i);
 
             for (let j = 0; j < dayCounter; j++) {
-                this.addEmptyCell(col);
+                // Add empty cells
+                const color = "#1e1e1e";
+                this.addCell(col, color);
             }
 
             const daysToGenerate = i === this.getCurrentMonth() ? this.getCurrentDay() : Object.values(daysOfTheMonth)[i];
-            console.log("daysToGenerate:", daysToGenerate);
 
             for (let j = 0; j < daysToGenerate; j++) {
-                this.addCell(col);
+                const color = "#262626";
+                this.addCell(col, color);
                 dayCounter++;
 
                 if (dayCounter === 7) {
