@@ -14,11 +14,11 @@ class Month {
 
     getElement() {
         return this.element;
-    }
+    };
 
     getContainer() {
         return this.cellContainer;
-    }
+    };
 }
 
 export { Month };

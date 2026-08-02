@@ -10,7 +10,7 @@ class Column {
 
     getElement() {
         return this.element;
-    }
+    };
 }
 
 export { Column };

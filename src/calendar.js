@@ -125,12 +125,12 @@ class Calendar {
         months.appendChild(month.getElement());
         const cellContainer = month.getContainer();
         return cellContainer;
-    }
+    };
 
     addCell(col, color) {
         const cell = new Cell(color);
         col.appendChild(cell.getElement());
-    }
+    };
 
     generateCalendar() {
         const year = new Date().getFullYear();
