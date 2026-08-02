@@ -70,6 +70,11 @@ main {
   display: flex;
 }
 
+.months {
+  display: flex;
+  margin: 0 1rem 1rem 1rem;
+}
+
 .days {
   display: flex;
   flex-direction: column;

@@ -86,6 +86,7 @@ class Calendar {
         const months = document.createElement("div");
         months.classList.add("months");
         this.getContainer().appendChild(months);
+        return months;
     };
 
     generateLegend() {
@@ -117,10 +118,27 @@ class Calendar {
         cellContainer.appendChild(col);
     };
 
+    addMonth(months, index) {
+        const month = document.createElement("span");
+        month.classList.add("month");
+        month.textContent = Object.keys(daysOfTheMonth)[index];
+        months.appendChild(month);
+        const cellContainer = document.createElement("div");
+        cellContainer.classList.add("cell-container");
+        month.appendChild(cellContainer);
+        return cellContainer;
+    }
+
     generateCalendar() {
         this.generateDays();
-        this.generateMonths();
+        const months = this.generateMonths();
         this.generateLegend();
+
+        for (let i = 0; i <= this.getCurrentMonth(); i++) {
+
+            const cellContainer = this.addMonth(months, i);
+            this.addColumn(cellContainer);
+        }
     };
 
     populateCalendar(){};
