@@ -1,5 +1,6 @@
 import { Cell } from "./cell";
 import { Month } from "./month";
+import { Column } from "./column";
 
 /**
  * Object containing all the days corresponding to each month
@@ -114,10 +115,9 @@ class Calendar {
     };
 
     addColumn(cellContainer) {
-        let col = document.createElement("div");
-        col.classList.add("col");
-        cellContainer.appendChild(col);
-        return col;
+        const col = new Column();
+        cellContainer.appendChild(col.getElement());
+        return col.getElement();
     };
 
     addMonth(months, index) {
