@@ -111,6 +111,12 @@ class Calendar {
         return (new Date(year, month, 1).getDay() + 6) % 7;
     };
 
+    addColumn(cellContainer) {
+        let col = document.createElement("div");
+        col.classList.add("col");
+        cellContainer.appendChild(col);
+    };
+
     generateCalendar() {
         this.generateDays();
         this.generateMonths();
