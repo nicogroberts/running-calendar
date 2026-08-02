@@ -47,7 +47,7 @@ class Calendar {
     }
 
     displayCurrentDate() {
-        console.log();
+        console.log(`Current Date: ${this.currentDate}, Month: ${this.getCurrentMonth}, Day: ${this.getCurrentDay}`);
     };
 
     getCurrentDate() {
