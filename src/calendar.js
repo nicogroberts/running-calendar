@@ -123,9 +123,7 @@ class Calendar {
     addMonth(months, index) {
         const month = new Month(Object.keys(daysOfTheMonth)[index]);
         months.appendChild(month.getElement());
-        const cellContainer = document.createElement("div");
-        cellContainer.classList.add("cell-container");
-        month.getElement().appendChild(cellContainer);
+        const cellContainer = month.getContainer();
         return cellContainer;
     }
 
