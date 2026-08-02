@@ -47,7 +47,7 @@ class Calendar {
     }
 
     displayCurrentDate() {
-        console.log(this.currentDate);
+        console.log();
     };
 
     getCurrentDate() {
@@ -135,19 +135,39 @@ class Calendar {
         col.appendChild(cell.getElement());
     }
 
+    addEmptyCell(col) {
+        const cell = new Cell("#1e1e1e");
+        col.appendChild(cell.getElement());
+    }
+
     generateCalendar() {
+        const year = new Date().getFullYear();
+
         this.generateDays();
         const months = this.generateMonths();
         this.generateLegend();
 
         for (let i = 0; i <= this.getCurrentMonth(); i++) {
             const cellContainer = this.addMonth(months, i);
-            const col = this.addColumn(cellContainer);
+            let col = this.addColumn(cellContainer);
 
             let dayCounter = this.getMonthOffset(year, i);
 
             for (let j = 0; j < dayCounter; j++) {
+                this.addEmptyCell(col);
+            }
+
+            const daysToGenerate = i === this.getCurrentMonth() ? this.getCurrentDay() : Object.values(daysOfTheMonth)[i];
+            console.log("daysToGenerate:", daysToGenerate);
+
+            for (let j = 0; j < daysToGenerate; j++) {
                 this.addCell(col);
+                dayCounter++;
+
+                if (dayCounter === 7) {
+                    col = this.addColumn(cellContainer);
+                    dayCounter = 0;
+                }
             }
         }
     };
