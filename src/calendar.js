@@ -1,4 +1,5 @@
 import { Cell } from "./cell";
+import { Month } from "./month";
 
 /**
  * Object containing all the days corresponding to each month
@@ -120,13 +121,11 @@ class Calendar {
     };
 
     addMonth(months, index) {
-        const month = document.createElement("span");
-        month.classList.add("month");
-        month.textContent = Object.keys(daysOfTheMonth)[index];
-        months.appendChild(month);
+        const month = new Month(Object.keys(daysOfTheMonth)[index]);
+        months.appendChild(month.getElement());
         const cellContainer = document.createElement("div");
         cellContainer.classList.add("cell-container");
-        month.appendChild(cellContainer);
+        month.getElement().appendChild(cellContainer);
         return cellContainer;
     }
 
