@@ -8,6 +8,22 @@ class Activity {
         this.time = time;
         this.pace = pace;
     }
+
+    getDate() {
+        return this.date;
+    };
+
+    getMileage() {
+        return this.mileage;
+    };
+
+    getTime() {
+        return this.time;
+    };
+
+    getPace() {
+        return this.pace;
+    };
 }
 
 export { Activity };
