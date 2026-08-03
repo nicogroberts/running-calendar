@@ -1,3 +1,5 @@
+import { Parser } from "./parser";
+
 /**
  * A class defining a file loader object
  */
