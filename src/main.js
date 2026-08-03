@@ -1,4 +1,5 @@
 import { Calendar } from "./calendar";
+import { Fileloader } from "./fileloader";
 
 let yearlyRunCount = 0;
 let yearlyTimeAmount = 0;
@@ -18,3 +19,12 @@ const runningCalendar = new Calendar(currentDate, calendar);
 runningCalendar.displayCurrentDate();
 
 runningCalendar.generateCalendar();
+
+const fileLoader = new Fileloader();
+
+fileLoader.getFile();
+
+document.getElementById("open-file").addEventListener("click", async () => {
+    const activities = fileLoader.getActivities();
+    runningCalendar.populateCalendar(activities);
+});

@@ -166,7 +166,9 @@ class Calendar {
         }
     };
 
-    populateCalendar(){};
+    populateCalendar(activities) {
+        
+    };
 
     getColor(){};
 }
