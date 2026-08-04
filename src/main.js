@@ -1,4 +1,5 @@
 import { Calendar } from "./calendar";
+import { Activitylog } from "./activitylog";
 import { Fileloader } from "./fileloader";
 
 let yearlyRunCount = 0;
@@ -11,6 +12,7 @@ yearlyTime.textContent = `${yearlyTimeAmount} hours in the last year`;
 const bestPace = document.getElementById("best-pace");
 bestPace.textContent = `${bestPaceTime} is the best pace in the last year`;
 const calendar = document.getElementById("calendar");
+const log = document.getElementById("activity-log");
 
 const currentDate = new Date();
 
@@ -19,6 +21,8 @@ const runningCalendar = new Calendar(currentDate, calendar);
 runningCalendar.displayCurrentDate();
 
 runningCalendar.generateCalendar();
+
+const activityLog = new Activitylog(log);
 
 const fileLoader = new Fileloader();
 
