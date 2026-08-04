@@ -22,9 +22,8 @@ runningCalendar.generateCalendar();
 
 const fileLoader = new Fileloader();
 
-fileLoader.getFile();
-
 document.getElementById("open-file").addEventListener("click", async () => {
+    await fileLoader.getFile();
     const activities = fileLoader.getActivities();
     runningCalendar.populateCalendar(activities);
 });

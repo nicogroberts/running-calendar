@@ -1,5 +1,7 @@
 import { Parser } from "./parser";
 
+let fileHandle;
+
 /**
  * A class defining a file loader object
  */
@@ -17,6 +19,8 @@ class Fileloader {
                 const text = await file.text();
 
                 // call to parser
+                const parser = new Parser();
+                parser.parseFile(text);
                 return true;
             }
         } catch (err) {

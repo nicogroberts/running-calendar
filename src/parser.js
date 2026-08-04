@@ -18,6 +18,7 @@ class Parser {
 
             if (trimmedLine.startsWith("- Mileage:")) {
                 // Get mileage
+                const mileage = parseFloat(trimmedLine.replace("- Mileage:", ""));
             }
 
             if (trimmedLine.startsWith("- Time:")) {
