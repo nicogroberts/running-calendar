@@ -21,6 +21,7 @@ class Fileloader {
                 // call to parser
                 const parser = new Parser();
                 parser.parseFile(text);
+                parser.displayResults();
                 return true;
             }
         } catch (err) {

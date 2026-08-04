@@ -1,3 +1,5 @@
+import { Activity } from "./activity";
+
 /**
  * A class defining a parser object
  */
@@ -8,18 +10,22 @@ class Parser {
 
     parseFile(text) {
         const lines = text.split(/\r?\n/);
+        let date = null;
+        let mileage = null;
+        let time = null;
+        let pace = null;
 
         lines.forEach(line => {
             const trimmedLine = line.trim();
 
             if (trimmedLine.startsWith("- Date:")) {
                 // Get date
-                const date = new Date(trimmedLine.replace("- Date:", "").trim());
+                date = new Date(trimmedLine.replace("- Date:", "").trim());
             }
 
             if (trimmedLine.startsWith("- Mileage:")) {
                 // Get mileage
-                const mileage = parseFloat(trimmedLine.replace("- Mileage:", ""));
+                mileage = parseFloat(trimmedLine.replace("- Mileage:", ""));
             }
 
             if (trimmedLine.startsWith("- Time:")) {
@@ -28,23 +34,36 @@ class Parser {
                 console.log(trimmedTime);
                 if (/^\d{1,2}:\d{2}:\d{2}$/.test(trimmedTime)) {
                     const timeMatch = trimmedTime.match(/\d{1,2}:\d{2}:\d{2}/);
-                    const time = timeMatch ? timeMatch[0] : null;
+                    time = timeMatch ? timeMatch[0] : null;
                 } else if (/^\d{1,2}:\d{2}$/.test(trimmedTime)) {
                     const timeMatch = trimmedTime.match(/\d{1,2}:\d{2}/);
-                    const time = timeMatch ? timeMatch[0] : null;
+                    time = timeMatch ? timeMatch[0] : null;
                 }
             }
 
             if (trimmedLine.startsWith("- Pace:")) {
                 // Get pace
                 const paceMatch = trimmedLine.match(/\d{1,2}'\d{2}"/);
-                const pace = paceMatch ? paceMatch[0] : null;
+                pace = paceMatch ? paceMatch[0] : null;
+            }
+
+            if (date !== null && mileage !== null && time !== null && pace !== null) {
+                const activity = new Activity(date, mileage, time, pace);
+                this.results.push(activity);
+                date = null;
+                mileage = null;
+                time = null;
+                pace = null;
             }
         });
     };
 
     getResults() {
         return this.results;
+    }
+
+    displayResults() {
+        console.log(this.results);
     }
 }
 
