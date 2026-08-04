@@ -14,6 +14,7 @@ class Parser {
 
             if (trimmedLine.startsWith("- Date:")) {
                 // Get date
+                const date = new Date(trimmedLine.replace("- Date:", "").trim());
             }
 
             if (trimmedLine.startsWith("- Mileage:")) {
@@ -28,11 +29,9 @@ class Parser {
                 if (/^\d{1,2}:\d{2}:\d{2}$/.test(trimmedTime)) {
                     const timeMatch = trimmedTime.match(/\d{1,2}:\d{2}:\d{2}/);
                     const time = timeMatch ? timeMatch[0] : null;
-                    console.log(time);
                 } else if (/^\d{1,2}:\d{2}$/.test(trimmedTime)) {
                     const timeMatch = trimmedTime.match(/\d{1,2}:\d{2}/);
                     const time = timeMatch ? timeMatch[0] : null;
-                    console.log(time);
                 }
             }
 
