@@ -27,6 +27,8 @@ class Parser {
 
             if (trimmedLine.startsWith("- Pace:")) {
                 // Get pace
+                const paceMatch = trimmedLine.match(/\d{1,2}'\d{2}"/);
+                const pace = paceMatch ? paceMatch[0] : null;
             }
         });
     };
