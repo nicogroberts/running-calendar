@@ -23,6 +23,17 @@ class Parser {
 
             if (trimmedLine.startsWith("- Time:")) {
                 // Get time check for HH:MM:SS format or MM:SS format
+                const trimmedTime = trimmedLine.replace("- Time:", "").trim();
+                console.log(trimmedTime);
+                if (/^\d{1,2}:\d{2}:\d{2}$/.test(trimmedTime)) {
+                    const timeMatch = trimmedTime.match(/\d{1,2}:\d{2}:\d{2}/);
+                    const time = timeMatch ? timeMatch[0] : null;
+                    console.log(time);
+                } else if (/^\d{1,2}:\d{2}$/.test(trimmedTime)) {
+                    const timeMatch = trimmedTime.match(/\d{1,2}:\d{2}/);
+                    const time = timeMatch ? timeMatch[0] : null;
+                    console.log(time);
+                }
             }
 
             if (trimmedLine.startsWith("- Pace:")) {
