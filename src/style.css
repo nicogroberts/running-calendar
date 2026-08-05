@@ -127,6 +127,20 @@ main {
   margin-bottom: 1rem;
 }
 
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+#show-more {
+  background-color: var(--primary-color);
+  padding: 1rem 3rem;
+  color: var(--quaternary-color);
+  border: solid 1px var(--tertiary-color);
+  border-radius: 5px;
+}
+
 .hide {
   display: none;
 }

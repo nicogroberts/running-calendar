@@ -14,16 +14,29 @@ class Activitylog {
         this.parentElement.appendChild(this.logHeading);
     }
 
+    addToLog(element) {
+        this.parentElement.appendChild(element);
+    };
+
     generateActivityLog(activities) {
         activities.reverse().forEach((activity, index) => {
             const logMessage = new Logmessage();
-            this.parentElement.appendChild(logMessage.element);
+            this.addToLog(logMessage.element);
             if (index >= 3) {
                 logMessage.isVisible(false);
             }
             logMessage.setHeading(`Run ${activities.length - index} on ${activity.getDate().toLocaleDateString("en-us")}`);
             logMessage.setMessageInfo(`Mileage: ${activity.getMileage()}\nTime: ${activity.getTime()}\nPace: ${activity.getPace()}`);
-            
+            if (index === activities.length - 1) {
+                const btnContainer = document.createElement("div");
+                btnContainer.classList.add("btn-container");
+                this.addToLog(btnContainer);
+                const showMore = document.createElement("button");
+                showMore.id = "show-more";
+                showMore.textContent = "Show More Activity";
+                btnContainer.appendChild(showMore);
+                document.getElementById("show-more").addEventListener("click", showMoreActivities);
+            }
         });
     };
 }
