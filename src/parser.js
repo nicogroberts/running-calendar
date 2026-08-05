@@ -20,7 +20,7 @@ class Parser {
 
             if (trimmedLine.startsWith("- Date:")) {
                 // Get date
-                date = new Date(trimmedLine.replace("- Date:", "").trim());
+                date = new Date(trimmedLine.replace("- Date:", "").trim() + "T00:00:00");
             }
 
             if (trimmedLine.startsWith("- Mileage:")) {

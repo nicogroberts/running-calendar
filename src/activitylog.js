@@ -21,7 +21,8 @@ class Activitylog {
             if (index >= 3) {
                 logMessage.isVisible(false);
             }
-            //logMessage.setHeading(`Run ${activities.length - index} on ${activities[index]}`);
+            logMessage.setHeading(`Run ${activities.length - index} on ${activity.getDate().toLocaleDateString("en-us")}`);
+            
         });
     };
 }
