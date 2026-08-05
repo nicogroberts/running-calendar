@@ -60,11 +60,11 @@ class Parser {
 
     getResults() {
         return this.results;
-    }
+    };
 
     displayResults() {
         console.log(this.results);
-    }
+    };
 }
 
 export { Parser };

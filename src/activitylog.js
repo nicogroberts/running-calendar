@@ -9,6 +9,10 @@ class Activitylog {
         this.logHeading.textContent = "Running activity";
         this.parentElement.appendChild(this.logHeading);
     }
+
+    generateActivityLog(activities) {
+        
+    };
 }
 
 export { Activitylog };
