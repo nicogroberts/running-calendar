@@ -22,6 +22,7 @@ class Fileloader {
                 const parser = new Parser();
                 parser.parseFile(text);
                 parser.displayResults();
+                this.activities = parser.getResults();
                 return true;
             }
         } catch (err) {

@@ -5,16 +5,18 @@ class Logmessage {
     constructor() {
         this.element = document.createElement("div");
         this.element.classList.add("log-message");
-        this.logHeading = document.createElement("div");
-        this.logHeading.classList.add("log-heading");
-        this.element.appendChild(this.logHeading);
+
+        this.messageHeading = document.createElement("div");
+        this.messageHeading.classList.add("message-heading");
+        this.element.appendChild(this.messageHeading);
+
         this.messageInfo = document.createElement("div");
         this.messageInfo.classList.add("message-info");
         this.element.appendChild(this.messageInfo);
     }
 
     setHeading(text) {
-        this.logHeading.textContent = text;
+        this.messageHeading.textContent = text;
     };
 
     setMessageInfo(text) {
@@ -22,7 +24,7 @@ class Logmessage {
     };
 
     isVisible(flag) {
-        if (flag) {
+        if (!flag) {
             this.element.classList.add("hide");
         } else {
             this.element.classList.remove("hide");

@@ -14,6 +14,8 @@ bestPace.textContent = `${bestPaceTime} is the best pace in the last year`;
 const calendar = document.getElementById("calendar");
 const log = document.getElementById("activity-log");
 
+let isLoaded = false;
+
 const currentDate = new Date();
 
 const runningCalendar = new Calendar(currentDate, calendar);
@@ -27,7 +29,10 @@ const activityLog = new Activitylog(log);
 const fileLoader = new Fileloader();
 
 document.getElementById("open-file").addEventListener("click", async () => {
-    await fileLoader.getFile();
+    isLoaded = await fileLoader.getFile();
+    if (!isLoaded) return;
+
     const activities = fileLoader.getActivities();
     runningCalendar.populateCalendar(activities);
+    activityLog.generateActivityLog(activities);
 });

@@ -111,6 +111,25 @@ main {
   color: #fff;
 }
 
+.message-heading {
+  color: #fff;
+}
+
+.message-info {
+  font-size: small;
+}
+
+.log-message {
+  border: solid 1px var(--tertiary-color);
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hide {
+  display: none;
+}
+
 footer {
   text-align: center;
   margin: 0.5rem;
