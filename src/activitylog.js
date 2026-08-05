@@ -11,6 +11,8 @@ class Activitylog {
         this.logHeading.classList.add("log-heading");
         this.logHeading.textContent = "Running activity";
 
+        this.hiddenMessages = [];
+
         this.parentElement.appendChild(this.logHeading);
     }
 
@@ -24,20 +26,38 @@ class Activitylog {
             this.addToLog(logMessage.element);
             if (index >= 3) {
                 logMessage.isVisible(false);
+                this.hiddenMessages.push(logMessage);
             }
             logMessage.setHeading(`Run ${activities.length - index} on ${activity.getDate().toLocaleDateString("en-us")}`);
             logMessage.setMessageInfo(`Mileage: ${activity.getMileage()}\nTime: ${activity.getTime()}\nPace: ${activity.getPace()}`);
             if (index === activities.length - 1) {
-                const btnContainer = document.createElement("div");
-                btnContainer.classList.add("btn-container");
-                this.addToLog(btnContainer);
-                const showMore = document.createElement("button");
-                showMore.id = "show-more";
-                showMore.textContent = "Show More Activity";
-                btnContainer.appendChild(showMore);
-                document.getElementById("show-more").addEventListener("click", showMoreActivities);
+                this.createBtn();
             }
         });
+    };
+
+    createBtn() {
+        const btnContainer = document.createElement("div");
+        btnContainer.classList.add("btn-container");
+        this.addToLog(btnContainer);
+
+        const showMore = document.createElement("button");
+        showMore.id = "show-more";
+        showMore.textContent = "Show More Activity";
+        btnContainer.appendChild(showMore);
+
+        showMore.addEventListener("click", () => {
+            this.showMoreActivities();
+            showMore.remove();
+        });
+    }
+
+    showMoreActivities() {
+        this.hiddenMessages.forEach(message => {
+            message.isVisible(true);
+        });
+
+        this.hiddenMessages = [];
     };
 }
 
