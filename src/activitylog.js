@@ -22,6 +22,7 @@ class Activitylog {
                 logMessage.isVisible(false);
             }
             logMessage.setHeading(`Run ${activities.length - index} on ${activity.getDate().toLocaleDateString("en-us")}`);
+            logMessage.setMessageInfo(`Mileage: ${activity.getMileage()}\nTime: ${activity.getTime()}\nPace: ${activity.getPace()}`);
             
         });
     };
