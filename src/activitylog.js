@@ -11,7 +11,9 @@ class Activitylog {
     }
 
     generateActivityLog(activities) {
-        
+        activities.reverse().array.forEach((activity, index) => {
+            
+        });
     };
 }
 

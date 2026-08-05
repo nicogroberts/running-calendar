@@ -20,6 +20,14 @@ class Logmessage {
     setMessageInfo(text) {
         this.messageInfo.textContent = text;
     };
+
+    isVisible(flag) {
+        if (flag) {
+            this.element.classList.add("hide");
+        } else {
+            this.element.classList.remove("hide");
+        }
+    };
 }
 
 export { Logmessage };
