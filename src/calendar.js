@@ -167,18 +167,18 @@ class Calendar {
     };
 
     populateCalendar(activities) {
-        // need to work on this next
+        const timeInMinutes;
     };
 
     getColor() {};
 
-    toSeconds(time) {
+    toMinutes(time) {
         const parts = time.split(":").map(Number);
 
         if (parts.length === 3) {
-            return parts[0] * 3600 + parts[1] * 60 + parts[2];
+            return parts[0] * 60 + parts[1] + parts[2] / 60;
         } else if (parts.length === 2) {
-            return parts[0] * 60 + parts[1];
+            return parts[0] + parts[1] / 60;
         } else {
             return 0;
         }
