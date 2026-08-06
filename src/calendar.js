@@ -181,10 +181,32 @@ class Calendar {
         
         const normalized = trainingValues.map(value => value / max);
 
-        console.log(normalized);
+        // get the cell by date
     };
 
-    getColor() {};
+    getColor(cell, normalized) {
+        switch (true) {
+            case 0:
+                cell.setColor(activityStates.None);
+                break;
+
+            case normalized <= 0.25:
+                cell.setColor(activityStates.Least);
+                break;
+
+            case normalized <= 0.5:
+                cell.setColor(activityStates.Less);
+                break;
+
+            case normalized <= 0.75:
+                cell.setColor(activityStates.More);
+                break;
+
+            default:
+                cell.setColor(activityStates.Most);
+                break;
+        }
+    };
 
     toMinutes(time) {
         const parts = time.split(":").map(Number);
