@@ -167,7 +167,21 @@ class Calendar {
     };
 
     populateCalendar(activities) {
-        const timeInMinutes;
+        const trainingValues = []; 
+
+        activities.forEach(activity => {
+            const date = activity.getDate();
+            const minutes = this.toMinutes(activity.getTime()).toFixed(2);
+            const miles = activity.getMileage();
+            const trainingLoad = minutes * miles;
+            trainingValues.push(trainingLoad);
+        });
+
+        const max = Math.max(...trainingValues);
+        
+        const normalized = trainingValues.map(value => value / max);
+
+        console.log(normalized);
     };
 
     getColor() {};
