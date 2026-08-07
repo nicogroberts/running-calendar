@@ -37,15 +37,16 @@ document.getElementById("open-file").addEventListener("click", async () => {
     activityLog.generateActivityLog(activities);
 
     let totalMinutes = 0;
-    let currentBestPace;
-    let currentBestPaceSeconds = Infinity;
+    let currentBestTime = Infinity;
     activities.forEach((activity, index) => {
         totalMinutes += runningCalendar.toMinutes(activity.getTime());
         yearlyRunCount = index + 1;
         
-        const pace = activity.getPace();
+        const seconds = toSeconds(activity.getPace());
 
-
+        if (seconds < currentBestTime) {
+            currentBestTime = seconds;
+        }
     });
 
     const totalHours = (totalMinutes / 60).toFixed(2);
@@ -55,16 +56,23 @@ document.getElementById("open-file").addEventListener("click", async () => {
 
     yearlyRuns.textContent = `${yearlyRunCount} runs in the last year`;
 
-    bestPaceTime = currentBestPace ?? "00:00";
+    bestPaceTime = toPace(currentBestTime);
     bestPace.textContent = `${bestPaceTime} is the best pace in the last year`;
 });
 
 const toSeconds = (time) => {
-    const parts = time.split(":").map(Number);
+    const match = time.match(/^(\d+)'(\d+)"$/);
 
-    if (parts.length === 2) {
-        return parts[0] * 60 + parts[1];
-    } else {
-        return 0;
-    }
+    if (!match) return 0;
+
+    return Number(match[1]) * 60 + Number(match[2]);
 };
+
+const toPace = (time) => {
+    if(!isFinite(time)) return "00:00";
+
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+
+    return `${minutes}:${String(seconds).padStart(2,"0")}`;
+}
