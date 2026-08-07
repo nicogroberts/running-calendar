@@ -4,7 +4,7 @@ import { Fileloader } from "./fileloader";
 
 let yearlyRunCount = 0;
 let yearlyTimeAmount = 0;
-let bestPaceTime = "00:00";
+let bestPaceTime = "00'00\"";
 const yearlyRuns = document.getElementById("yearly-runs");
 yearlyRuns.textContent = `${yearlyRunCount} runs in the last year`;
 const yearlyTime = document.getElementById("yearly-time");
@@ -69,10 +69,10 @@ const toSeconds = (time) => {
 };
 
 const toPace = (time) => {
-    if(!isFinite(time)) return "00:00";
+    if(!isFinite(time)) return "00'00\"";
 
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
 
-    return `${minutes}:${String(seconds).padStart(2,"0")}`;
+    return `${minutes}'${String(seconds).padStart(2,"0")}"`;
 }
