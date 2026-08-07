@@ -35,4 +35,15 @@ document.getElementById("open-file").addEventListener("click", async () => {
     const activities = fileLoader.getActivities();
     runningCalendar.populateCalendar(activities);
     activityLog.generateActivityLog(activities);
+
+    let totalMinutes = 0;
+    activities.forEach((activity, index) => {
+        totalMinutes += runningCalendar.toMinutes(activity.getTime());
+    });
+
+    const totalHours = (totalMinutes / 60).toFixed(2);
+
+    yearlyTimeAmount = totalHours;
+    yearlyTime.textContent = `${yearlyTimeAmount} hours in the last year`;
+
 });
