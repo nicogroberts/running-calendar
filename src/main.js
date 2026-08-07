@@ -37,9 +37,15 @@ document.getElementById("open-file").addEventListener("click", async () => {
     activityLog.generateActivityLog(activities);
 
     let totalMinutes = 0;
+    let currentBestPace;
+    let currentBestPaceSeconds = Infinity;
     activities.forEach((activity, index) => {
         totalMinutes += runningCalendar.toMinutes(activity.getTime());
         yearlyRunCount = index + 1;
+        
+        const pace = activity.getPace();
+
+
     });
 
     const totalHours = (totalMinutes / 60).toFixed(2);
@@ -49,4 +55,16 @@ document.getElementById("open-file").addEventListener("click", async () => {
 
     yearlyRuns.textContent = `${yearlyRunCount} runs in the last year`;
 
+    bestPaceTime = currentBestPace ?? "00:00";
+    bestPace.textContent = `${bestPaceTime} is the best pace in the last year`;
 });
+
+const toSeconds = (time) => {
+    const parts = time.split(":").map(Number);
+
+    if (parts.length === 2) {
+        return parts[0] * 60 + parts[1];
+    } else {
+        return 0;
+    }
+};
