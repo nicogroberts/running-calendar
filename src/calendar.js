@@ -43,8 +43,12 @@ class Calendar {
     constructor(currentDate, parentElement) {
         this.currentDate = currentDate;
         this.parentElement = parentElement;
+
         this.calendarContainer = document.createElement("div");
         this.calendarContainer.classList.add("calendar-container");
+
+        this.dateToCell = new Map();
+
         this.parentElement.appendChild(this.getContainer());
     }
 
@@ -127,9 +131,14 @@ class Calendar {
         return cellContainer;
     };
 
-    addCell(col, color) {
+    addCell(col, color, date = null) {
         const cell = new Cell(color);
         col.appendChild(cell.getElement());
+
+        if (date) {
+            const key = date.toISOString().slice(0,10);
+            this.dateToCell.set(key, cell);
+        }
     };
 
     generateCalendar() {
@@ -148,14 +157,16 @@ class Calendar {
             for (let j = 0; j < dayCounter; j++) {
                 // Add empty cells
                 const color = "#1e1e1e";
-                this.addCell(col, color);
+                const date = new Date(year, i, j + 1);
+                this.addCell(col, color, date);
             }
 
             const daysToGenerate = i === this.getCurrentMonth() ? this.getCurrentDay() : Object.values(daysOfTheMonth)[i];
 
             for (let j = 0; j < daysToGenerate; j++) {
                 const color = "#262626";
-                this.addCell(col, color);
+                const date = new Date(year, i, j + 1);
+                this.addCell(col, color, date);
                 dayCounter++;
 
                 if (dayCounter === 7) {
@@ -167,21 +178,28 @@ class Calendar {
     };
 
     populateCalendar(activities) {
-        const trainingValues = []; 
+        const scores = []; 
 
-        activities.forEach(activity => {
+        activities.forEach((activity) => {
             const date = activity.getDate();
             const minutes = this.toMinutes(activity.getTime()).toFixed(2);
             const miles = activity.getMileage();
-            const trainingLoad = minutes * miles;
-            trainingValues.push(trainingLoad);
+            const effortScore = minutes * miles;
+            scores.push(effortScore);
         });
 
-        const max = Math.max(...trainingValues);
-        
-        const normalized = trainingValues.map(value => value / max);
+        const max = Math.max(...scores);
+        const normalized = scores.map(value => value / max);
 
-        // get the cell by date
+        activities.forEach((activity, index) => {
+            const key = activity.getDate().toISOString().slice(0, 10);
+            const cell = this.dateToCell.get(key);
+
+            if (cell) {
+                this.getColor(cell, normalized[index]);
+            }
+        });
+
     };
 
     getColor(cell, normalized) {
