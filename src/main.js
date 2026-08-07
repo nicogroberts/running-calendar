@@ -39,11 +39,14 @@ document.getElementById("open-file").addEventListener("click", async () => {
     let totalMinutes = 0;
     activities.forEach((activity, index) => {
         totalMinutes += runningCalendar.toMinutes(activity.getTime());
+        yearlyRunCount = index + 1;
     });
 
     const totalHours = (totalMinutes / 60).toFixed(2);
 
     yearlyTimeAmount = totalHours;
     yearlyTime.textContent = `${yearlyTimeAmount} hours in the last year`;
+
+    yearlyRuns.textContent = `${yearlyRunCount} runs in the last year`;
 
 });
